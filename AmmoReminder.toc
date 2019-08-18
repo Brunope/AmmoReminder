@@ -1,0 +1,7 @@
+## Interface: 80200
+## Title: Ammo Reminder
+## Author: Slickback
+## Version: 0.1
+
+AmmoReminder.lua
+ZoneChanged.lua
