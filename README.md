@@ -16,4 +16,5 @@ I plan to make many improvements:
 * Configuration options for the previous two items
 * Configuration option to disable reminders entirely when ammo amount is above a certain threshold
 * Configuration option to change how reminder is displayed (chat, message popup, etc.)
+* Disable reminders when passing through on a flight path
 * Mayyybe support alliance scrubs
