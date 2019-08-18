@@ -9,6 +9,7 @@ In v1, only Horde arrow vendors will be fully supported. Some bullet vendors wil
 ## Future Versions
 I plan to make many improvements:
 * Support bullet vendors
+* Add remaining ammo count to reminder message
 * Check currently equipped ammo to suggest either bullet vs arrow vendor
 * Reminder when you get into a 5-man group, since you're probably going to a dungeon
 * Reminder when running low on ammo for your equipped weapon type
