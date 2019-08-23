@@ -18,7 +18,7 @@ local hordeArrowSubzoneToNpc = {
 	["Ratchet"]="Jazzik",
 	["Raventusk Village"]="Renn'az",
 	["Razor Hill"]="Ghrawt",
-	["Sen'jin Village"]="Trayexir",
+	["Sen'jin Village"]="K'waii",
 	["Shadowprey Village"]="Tukk",
 	["Splintertree Post"]="Burkrum",
 	["Steamwheedle Port"]="Jabbey",
@@ -29,6 +29,8 @@ local hordeArrowSubzoneToNpc = {
 	["Thorium Point"]="Master Smith Burninate",
 	["Valley of Trials"]="Duokna"
 }
+
+-- TODO: Super-Seller 680 ?
 
 function FindHordeArrowVendorNpc(zone, subzone)
 	local npc = hordeArrowSubzoneToNpc[subzone]

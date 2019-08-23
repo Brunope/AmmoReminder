@@ -7,4 +7,5 @@
 Ammo.lua
 HordeCityVendors.lua
 HordeArrowVendors.lua
+HordeBulletVendors.lua
 AmmoReminder.lua
