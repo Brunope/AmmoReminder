@@ -62,4 +62,3 @@ function AR.LowAmmo()
 	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
 	return AR.GetEquippedAmmoAmount() < threshold;
 end
-	
