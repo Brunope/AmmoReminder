@@ -28,7 +28,7 @@ local hordeBulletSubzoneToNpc = {
 	["Steamwheedle Port"]="Jabbey",
 	["Light's Hope Chapel"]="Caretaker Alen",
 	["Cenarion Hold"]="Calandrath",
-	["TODO (somewhere in Shimmering Flats)"]="Synge",
+	["Mirage Raceway"]="Synge",
 	["Marshal's Refuge"]="Nergal"
 }
 
