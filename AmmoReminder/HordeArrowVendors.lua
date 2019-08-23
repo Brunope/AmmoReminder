@@ -30,21 +30,11 @@ local hordeArrowSubzoneToNpc = {
 	["Valley of Trials"]="Duokna"
 }
 
-local hordeArrowCityToNpc = {
-	["Orgrimmar"]="Trak'gen",
-	["Undercity"]="Eleanor Rusk",
-	["Thunder Bluff"]="Kuruk"
-}
-
-function IsHordeCity(zone)
-	return hordeArrowCityToNpc[zone] ~= nil
-end
-
 function FindHordeArrowVendorNpc(zone, subzone)
 	local npc = hordeArrowSubzoneToNpc[subzone]
 	if npc ~= nil then
 		return npc
 	end
 
-	return hordeArrowCityToNpc[zone]
+	return FindHordeCityVendorNpc(zone)
 end
