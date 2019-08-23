@@ -25,6 +25,14 @@ local function UsesBullets()
 	return weaponType == "Guns"
 end
 
+local function GetAmmoType()
+	if UsesArrows() then
+		return "arrows"
+	elseif UsesBullets() then
+		return "bullets"
+	end
+end
+
 local function Remind(npc)
 	local numArrows = GetEquippedAmmoAmount();
 	message("Remember to buy arrows! You have "..numArrows.." left. Look for "..npc);
@@ -35,21 +43,29 @@ local function ShouldSkip(zone)
 	return IsHordeCity(zone) and zone == lastZone
 end
 
-local function HandleZoneChange(self, event, ...)
+local function FindAmmoVendorNpc(zone, subzone)
 	if UsesArrows() then
-		DebugPrint("I use arrows!")
+		return FindHordeArrowVendorNpc(zone, subzone)
 	elseif UsesBullets() then
-		DebugPrint("I use bullets!")
+		return FindHordeBulletVendorNpc(zone, subzone)
 	end
+end
+
+local function HandleZoneChange(self, event, ...)
+	local ammoType = GetAmmoType()
+	DebugPrint(ammoType)
 
 	local subzone = GetSubZoneText()
 	local zone = GetZoneText()
+
 	DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
-	local npc = FindHordeArrowVendorNpc(zone, subzone)
 	DebugPrint(ShouldSkip(zone))
+
+	local npc = FindAmmoVendorNpc(zone, subzone)
 	if npc ~= nil and not ShouldSkip(zone) then
 		Remind(npc)
 	end
+
 	lastZone = zone
 end
 
