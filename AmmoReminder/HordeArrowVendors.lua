@@ -1,3 +1,5 @@
+local AR = AmmoReminder
+
 local hordeArrowSubzoneToNpc = {
 	["Darkspear Training Grounds"]="Test",
 	["Bloodhoof Village"]="Moorat Longstride",
@@ -32,11 +34,11 @@ local hordeArrowSubzoneToNpc = {
 
 -- TODO: Super-Seller 680 ?
 
-function FindHordeArrowVendorNpc(zone, subzone)
+function AR.FindHordeArrowVendorNpc(zone, subzone)
 	local npc = hordeArrowSubzoneToNpc[subzone]
 	if npc ~= nil then
 		return npc
 	end
 
-	return FindHordeCityVendorNpc(zone)
+	return AR.FindHordeCityVendorNpc(zone)
 end

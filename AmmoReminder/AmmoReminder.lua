@@ -1,111 +1,62 @@
-local debugMode = false;
+local AR = AmmoReminder;
 
-local function DebugPrint(s)
-	if debugMode then
+function AR.DebugPrint(s)
+	if AR.debugMode then
 		print(s)
 	end
 end
 
-local function GetRangedWeaponType()
-	local link = GetInventoryItemLink("player",GetInventorySlotInfo("RangedSlot"));
-	if link == nil then
-		return "Missing";
-	end;
-	local _, _, _, _, _, _, itemType = GetItemInfo(link);
-	return itemType;
-end;
-
-local function UsesArrows()
-	local weaponType = GetRangedWeaponType()
-	return weaponType == "Bows" or weaponType == "Crossbows"
-end
-
-local function UsesBullets()
-	local weaponType = GetRangedWeaponType()
-	return weaponType == "Guns"
-end
-
--- I think this can be replaced with GetEquippedAmmoName but I
--- can't test it yet
-local function GetAmmoType()
-	if UsesArrows() then
-		return "arrows"
-	elseif UsesBullets() then
-		return "bullets"
-	end
-end
-
-local levelToAmmoThreshold = {
-	[0]=400,
-	[10]=1000,
-	[20]=1400,
-	[30]=1600,
-	[40]=1800,
-	[50]=2000,
-	[60]=2000
-}
-
-local function RoundDownTen(int)
-	return math.floor(int / 10) * 10
-end
-
-local function LowAmmo()
-	local level = UnitLevel("player");
-	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
-	return GetEquippedAmmoAmount() < threshold;
-end
-	
-local function Remind(npc)
-	local ammoCount = GetEquippedAmmoAmount();
-	local ammoType = GetAmmoType();
+function AR.Remind(npc)
+	local ammoCount = AR.GetEquippedAmmoAmount();
+	local ammoType = AR.GetAmmoType();
 	message("Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc);
 end
 
-local lastZone = ""
-local function ShouldSkipZone(zone)
-	return IsHordeCity(zone) and zone == lastZone;
+AR.lastZone = ""
+function AR.ShouldSkipZone(zone)
+	return AR.IsHordeCity(zone) and zone == AR.lastZone;
 end
 
-local function ShouldSkip(zone)
-	return ShouldSkipZone(zone) or not LowAmmo();
+function AR.ShouldSkip(zone)
+	return AR.ShouldSkipZone(zone) or not AR.LowAmmo();
 end
 
-local function FindAmmoVendorNpc(zone, subzone)
-	if UsesArrows() then
-		return FindHordeArrowVendorNpc(zone, subzone)
-	elseif UsesBullets() then
-		return FindHordeBulletVendorNpc(zone, subzone)
+function AR.FindAmmoVendorNpc(zone, subzone)
+	if AR.UsesArrows() then
+		return AR.FindHordeArrowVendorNpc(zone, subzone)
+	elseif AR.UsesBullets() then
+		return AR.FindHordeBulletVendorNpc(zone, subzone)
 	end
 end
 
-local function HandleZoneChange(self, event, ...)
-	local ammoType = GetAmmoType()
-	DebugPrint(ammoType)
+function AR.HandleZoneChange(self, event, ...)
+	local ammoType = AR.GetAmmoType()
+	AR.DebugPrint(ammoType)
 
 	local subzone = GetSubZoneText()
 	local zone = GetZoneText()
 
-	DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
-	DebugPrint(ShouldSkip(zone))
+	AR.DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
+	AR.DebugPrint(ShouldSkip(zone))
 
-	local npc = FindAmmoVendorNpc(zone, subzone)
-	if npc ~= nil and not ShouldSkip(zone) then
-		Remind(npc)
+	local npc = AR.FindAmmoVendorNpc(zone, subzone)
+	if npc ~= nil and not AR.ShouldSkip(zone) then
+		AR.Remind(npc)
 	end
 
-	lastZone = zone
+	AR.lastZone = zone
 end
 
 local ZoneChange_EventFrame = CreateFrame("Frame")
 ZoneChange_EventFrame:RegisterEvent("ZONE_CHANGED")
-ZoneChange_EventFrame:SetScript("OnEvent", HandleZoneChange)
+ZoneChange_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
 
 local ZoneChangeIndoors_EventFrame = CreateFrame("Frame")
 ZoneChangeIndoors_EventFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
-ZoneChangeIndoors_EventFrame:SetScript("OnEvent", HandleZoneChange)
+ZoneChangeIndoors_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
 
 local ZoneChangeNewArea_EventFrame = CreateFrame("Frame")
 ZoneChangeNewArea_EventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-ZoneChangeNewArea_EventFrame:SetScript("OnEvent", HandleZoneChange)
+ZoneChangeNewArea_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
 
 print("Loaded AmmoReminder")

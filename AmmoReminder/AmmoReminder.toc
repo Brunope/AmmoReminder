@@ -4,6 +4,7 @@
 ## Author: Slickback
 ## Version: 0.1
 
+Global.lua
 Ammo.lua
 HordeCityVendors.lua
 HordeArrowVendors.lua

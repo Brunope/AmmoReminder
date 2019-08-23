@@ -1,0 +1,3 @@
+AmmoReminder = {}
+
+AmmoReminder.debugMode = true;

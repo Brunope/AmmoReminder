@@ -1,3 +1,5 @@
+local AR = AmmoReminder
+
 local hordeBulletSubzoneToNpc = {
 	["Shadowprey Village"]="Tukk",
 	["Bloodhoof Village"]="Moorat Longstride",
@@ -34,11 +36,11 @@ local hordeBulletSubzoneToNpc = {
 
 -- TODO: Super-Seller 680 ?
 
-function FindHordeBulletVendorNpc(zone, subzone)
+function AR.FindHordeBulletVendorNpc(zone, subzone)
 	local npc = hordeBulletSubzoneToNpc[subzone]
 	if npc ~= nil then
 		return npc
 	end
 
-	return FindHordeCityVendorNpc(zone)
+	return AR.FindHordeCityVendorNpc(zone)
 end
