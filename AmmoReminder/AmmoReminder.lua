@@ -34,7 +34,7 @@ local function GetAmmoType()
 end
 
 local function Remind(npc)
-	local ammoAmount = GetEquippedAmmoAmount();
+	local ammoCount = GetEquippedAmmoAmount();
 	local ammoType = GetAmmoType();
 	message("Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc);
 end
