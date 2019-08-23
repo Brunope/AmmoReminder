@@ -23,6 +23,7 @@ for me to test right now.
 * Reminder wherever you are when running really low on ammo
 * Configuration options for the previous 3 items
 * Configuration option to change how reminder is displayed (chat, message popup, etc.)
+* When level 60, only remind when near an Auction House (+config option)
 * Shove all public functions into a class to avoid collisions
 * Find nearest ammo vendor button/arrow
 * Mayyybe support alliance scrubs
