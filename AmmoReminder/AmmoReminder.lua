@@ -37,7 +37,7 @@ function AR.HandleZoneChange(self, event, ...)
 	local zone = GetZoneText()
 
 	AR.DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
-	AR.DebugPrint(ShouldSkip(zone))
+	AR.DebugPrint(AR.ShouldSkip(zone))
 
 	local npc = AR.FindAmmoVendorNpc(zone, subzone)
 	if npc ~= nil and not AR.ShouldSkip(zone) then

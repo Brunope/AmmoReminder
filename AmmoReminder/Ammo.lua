@@ -10,7 +10,7 @@ function AR.GetRangedWeaponType()
 end;
 
 function AR.UsesArrows()
-	local weaponType = GetRangedWeaponType()
+	local weaponType = AR.GetRangedWeaponType()
 	return weaponType == "Bows" or weaponType == "Crossbows"
 end
 
@@ -22,9 +22,9 @@ end
 -- I think this can be replaced with GetEquippedAmmoName but I
 -- can't test it yet
 function AR.GetAmmoType()
-	if UsesArrows() then
+	if AR.UsesArrows() then
 		return "arrows"
-	elseif UsesBullets() then
+	elseif AR.UsesBullets() then
 		return "bullets"
 	end
 end
@@ -60,6 +60,6 @@ end
 function AR.LowAmmo()
 	local level = UnitLevel("player");
 	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
-	return GetEquippedAmmoAmount() < threshold;
+	return AR.GetEquippedAmmoAmount() < threshold;
 end
 	
