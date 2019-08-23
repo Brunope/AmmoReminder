@@ -34,8 +34,9 @@ local function GetAmmoType()
 end
 
 local function Remind(npc)
-	local numArrows = GetEquippedAmmoAmount();
-	message("Remember to buy arrows! You have "..numArrows.." left. Look for "..npc);
+	local ammoAmount = GetEquippedAmmoAmount();
+	local ammoType = GetAmmoType();
+	message("Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc);
 end
 
 local lastZone = ""
