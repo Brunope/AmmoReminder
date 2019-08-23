@@ -4,4 +4,6 @@
 ## Author: Slickback
 ## Version: 0.1
 
+Ammo.lua
+HordeArrowVendors.lua
 AmmoReminder.lua

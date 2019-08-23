@@ -1,65 +1,56 @@
-local hordeArrowSubzoneToNpc = {
-    ["Darkspear Training Grounds"]="Test",
-    ["Bloodhoof Village"]="Moorat Longstride",
-    ["Bloodvenom Post"]="Bale",
-    ["Booty Bay"]="Haren Kanmae",
-    ["Brackenwall Village"]="Zanara",
-    ["Brill"]="Mrs. Winters",
-    ["Camp Mojache"]="Cawind Trueaim",
-    ["Camp Narache"]="Kawnie Softbreeze",
-    ["Cenarion Hold"]="Calandrath",
-    ["Deathknell"]="Joshua Kien",
-    ["Freewind Post"]="Starn",
-    ["Grom'gol Base Camp"]="Uthok",
-    ["Hammerfall"]="Graud",
-    ["Light's Hope Chapel"]="Caretaker Alen",
-    ["Marshal's Refuge"]="Nergal",
-    ["Nighthaven"]="Daeolyn Summerleaf",
-    ["Ratchet"]="Jazzik",
-    ["Raventusk Village"]="Renn'az",
-    ["Razor Hill"]="Ghrawt",
-    ["Sen'jin Village"]="Trayexir",
-    ["Shadowprey Village"]="Tukk",
-    ["Splintertree Post"]="Burkrum",
-    ["Steamwheedle Port"]="Jabbey",
-    ["Stonetalon Mountains"]="Grawnal",
-    ["Tarren Mill"]="Kayren Soothallow",
-    ["The Crossroads"]="Uthrok",
-    ["The Sepulcher"]="Edwin Harly",
-    ["Thorium Point"]="Master Smith Burninate",
-    ["Valley of Trials"]="Duokna"
-}
+local debug_mode = false;
 
-local hordeArrowCityToNpc = {
-    ["Orgrimmar"]="Trak'gen",
-    ["Undercity"]="Eleanor Rusk",
-    ["Thunder Bluff"]="Kuruk"
-}
-
-local function Remind(npc)
-   message("Remember to buy arrows! Look for "..npc)
+local function DebugPrint(s)
+	if debug_mode then
+		print(s)
+	end
 end
 
-local function FindHordeArrowVendorNpc(zone, subzone)
-    local npc = hordeArrowSubzoneToNpc[subzone]
-    if npc ~= nil then
-        return npc
-    end
+local function GetRangedWeaponType()
+	local link = GetInventoryItemLink("player",GetInventorySlotInfo("RangedSlot"));
+	if link == nil then
+		return "Missing";
+	end;
+	local _, _, _, _, _, _, itemType = GetItemInfo(link);
+	return itemType;
+end;
 
-    npc = hordeArrowCityToNpc[zone]
-    if npc ~= nil then
-        return npc
-    end
+local function UsesArrows()
+	local weaponType = GetRangedWeaponType()
+	return weaponType == "Bows" or weaponType == "Crossbows"
+end
+
+local function UsesBullets()
+	local weaponType = GetRangedWeaponType()
+	return weaponType == "Guns"
+end
+
+local function Remind(npc)
+	local numArrows = GetEquippedAmmoAmount();
+	message("Remember to buy arrows! You have "..numArrows.." left. Look for "..npc);
+end
+
+local lastZone = ""
+local function ShouldSkip(zone)
+	return IsHordeCity(zone) and zone == lastZone
 end
 
 local function HandleZoneChange(self, event, ...)
-    local subzone = GetSubZoneText()
-    local zone = GetZoneText()
-    print("Checking for ammo vendors in "..subzone..", "..zone)
-    local npc = FindHordeArrowVendorNpc(zone, subzone)
-    if npc ~= nil then
-           Remind(npc)
-    end
+	if UsesArrows() then
+		DebugPrint("I use arrows!")
+	elseif UsesBullets() then
+		DebugPrint("I use bullets!")
+	end
+
+	local subzone = GetSubZoneText()
+	local zone = GetZoneText()
+	DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
+	local npc = FindHordeArrowVendorNpc(zone, subzone)
+	DebugPrint(ShouldSkip(zone))
+	if npc ~= nil and not ShouldSkip(zone) then
+		Remind(npc)
+	end
+	lastZone = zone
 end
 
 local ZoneChange_EventFrame = CreateFrame("Frame")
