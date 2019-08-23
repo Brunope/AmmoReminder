@@ -4,17 +4,18 @@ run out of ammo. When you are near a vendor that sells ammo, Ammo Reminder
 pops up a message reminding you to buy some.
 
 ## Version 1.0
-In v1, only Horde arrow vendors will be fully supported. Some bullet vendors will be found, but not all.
+In v1, only Horde vendors will be fully supported.
 
-## Future Versions
+## TODO
 I plan to make many improvements:
-* Support bullet vendors
-* Add remaining ammo count to reminder message
-* Check currently equipped ammo to suggest either bullet vs arrow vendor
-* Reminder when you get into a 5-man group, since you're probably going to a dungeon
-* Reminder when running low on ammo for your equipped weapon type
-* Configuration options for the previous two items
-* Configuration option to disable reminders entirely when ammo amount is above a certain threshold
-* Configuration option to change how reminder is displayed (chat, message popup, etc.)
+* ~~Support bullet vendors~~
+* ~~Add remaining ammo count to reminder message~~
+* ~~Check currently equipped ammo to suggest either bullet vs arrow vendor~~
+* ~~Don't remind if ammo amount is over a certain threshold~~
 * Disable reminders when passing through on a flight path
+* Reminder when you get into a 5-man group, since you're probably going to a dungeon
+* Reminder wherever you are when running really low on ammo
+* Configuration options for the previous 3 items
+* Configuration option to change how reminder is displayed (chat, message popup, etc.)
+* Find nearest ammo vendor button/arrow
 * Mayyybe support alliance scrubs

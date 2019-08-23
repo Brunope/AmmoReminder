@@ -1,7 +1,7 @@
-local debug_mode = false;
+local debugMode = false;
 
 local function DebugPrint(s)
-	if debug_mode then
+	if debugMode then
 		print(s)
 	end
 end
@@ -25,6 +25,8 @@ local function UsesBullets()
 	return weaponType == "Guns"
 end
 
+-- I think this can be replaced with GetEquippedAmmoName but I
+-- can't test it yet
 local function GetAmmoType()
 	if UsesArrows() then
 		return "arrows"
@@ -33,6 +35,26 @@ local function GetAmmoType()
 	end
 end
 
+local levelToAmmoThreshold = {
+	[0]=400,
+	[10]=1000,
+	[20]=1400,
+	[30]=1600,
+	[40]=1800,
+	[50]=2000,
+	[60]=2000
+}
+
+local function RoundDownTen(int)
+	return math.floor(int / 10) * 10
+end
+
+local function LowAmmo()
+	local level = UnitLevel("player");
+	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
+	return GetEquippedAmmoAmount() < threshold;
+end
+	
 local function Remind(npc)
 	local ammoCount = GetEquippedAmmoAmount();
 	local ammoType = GetAmmoType();
@@ -40,8 +62,12 @@ local function Remind(npc)
 end
 
 local lastZone = ""
+local function ShouldSkipZone(zone)
+	return IsHordeCity(zone) and zone == lastZone;
+end
+
 local function ShouldSkip(zone)
-	return IsHordeCity(zone) and zone == lastZone
+	return ShouldSkipZone(zone) or not LowAmmo();
 end
 
 local function FindAmmoVendorNpc(zone, subzone)
