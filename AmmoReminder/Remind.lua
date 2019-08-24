@@ -8,11 +8,6 @@ function AR:Remind(npc)
 	local ammoCount = self:GetEquippedAmmoAmount();
 	local ammoType = self:GetAmmoType();
 
-	-- this is a pro hackerman move
-	if Is60() then
-		npc = "the Auction House"
-	end
-
 	local str = (
 		"Remember to buy "..ammoType.."! You have "..
 		ammoCount.." left. Look for "..npc
