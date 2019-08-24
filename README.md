@@ -21,9 +21,9 @@ for me to test right now.
 * ~~Don't remind if ammo amount is over a certain threshold~~
 * Reminder when you get into a 5-man group, since you're probably going to a dungeon
 * Reminder wherever you are when running really low on ammo
-* Configuration options for the previous 3 items
+* Configuration options for the previous ~~3~~ 2 items
 * ~~Configuration option to change how reminder is displayed (chat, message popup, etc.)~~
-* When level 60, only remind when near an Auction House (+config option)
+* ~~When level 60, only remind when in a major city (+config option)~~
 * ~~Shove all public functions into a class to avoid collisions~~
 * Find nearest ammo vendor button/arrow
 * Mayyybe support alliance scrubs

@@ -3,6 +3,7 @@ local AR = AmmoReminder
 local defaults = {
     profile = {
         showInChat = false,
+		limitAt60 = true,
 		ammoThreshold = 1600,
     },
 }
@@ -14,10 +15,17 @@ local options = {
     args = {
         showInChat = {
             type = "toggle",
-            name = "Show in Chat",
+            name = "Show only in chat",
             desc = "Print reminder in chat instead of a message dialog.",
             get = "IsShowInChat",
             set = "ToggleShowInChat",
+        },
+        limitAt60 = {
+            type = "toggle",
+            name = "Limit at 60",
+            desc = "At level 60, only remind when in a major city.",
+            get = "IsLimitAt60",
+            set = "SetLimitAt60",
         },
 		ammoThreshold = {
 			type = "range",
@@ -58,6 +66,14 @@ end
 
 function AR:ToggleShowInChat(info, value)
     self.db.profile.showInChat = value
+end
+
+function AR:IsLimitAt60(info)
+    return self.db.profile.limitAt60
+end
+
+function AR:ToggleLimitAt60(info, value)
+    self.db.profile.limitAt60 = value
 end
 
 function AR:GetAmmoThreshold(info)

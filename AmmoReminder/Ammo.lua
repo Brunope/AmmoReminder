@@ -1,7 +1,9 @@
 local AR = AmmoReminder;
 
 function AR:GetRangedWeaponType()
-	local link = GetInventoryItemLink("player",GetInventorySlotInfo("RangedSlot"));
+	local link = GetInventoryItemLink(
+		"player", GetInventorySlotInfo("RangedSlot"));
+
 	if link == nil then
 		return "Missing";
 	end;

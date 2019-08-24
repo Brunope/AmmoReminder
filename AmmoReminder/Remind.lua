@@ -1,10 +1,22 @@
 local AR = AmmoReminder
 
+local function Is60()
+	return UnitLevel("player") == 60
+end
+
 function AR:Remind(npc)
 	local ammoCount = self:GetEquippedAmmoAmount();
 	local ammoType = self:GetAmmoType();
 
-	local str = "Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc;
+	-- this is a pro hackerman move
+	if Is60() then
+		npc = "the Auction House"
+	end
+
+	local str = (
+		"Remember to buy "..ammoType.."! You have "..
+		ammoCount.." left. Look for "..npc
+	)
 
 	if self.db.profile.showInChat then
 		print(str)
@@ -13,8 +25,15 @@ function AR:Remind(npc)
 	end
 end
 
+function AR:ShouldSkipZoneAt60(zone)
+	return self.db.profile.limitAt60 and Is60() and not self:IsHordeCity(zone
+end
+
 function AR:ShouldSkipZone(zone)
-	return self:IsHordeCity(zone) and zone == self.lastZone;
+	return (
+		(self:IsHordeCity(zone) and zone == self.lastZone) or
+		self:ShouldSkipZoneAt60(zone)
+	)
 end
 
 function AR:ShouldSkip(zone)
