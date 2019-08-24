@@ -22,7 +22,7 @@ local options = {
         },
 		ammoThreshold = {
 			type = "range",
-			name = "Ammo amount reminder threshold",
+			name = "Low ammo threshold",
 			desc = "Don't remind when ammo amount > threshold.",
 			get = "GetAmmoThreshold",
 			set = "SetAmmoThreshold",

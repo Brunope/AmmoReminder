@@ -43,22 +43,6 @@ function AR:GetEquippedAmmoAmount()
 	return ammoCount
 end
 
-local levelToAmmoThreshold = {
-	[0]=400,
-	[10]=1000,
-	[20]=1400,
-	[30]=1600,
-	[40]=1800,
-	[50]=2000,
-	[60]=2000
-}
-
-local function RoundDownTen(int)
-	return math.floor(int / 10) * 10
-end
-
 function AR:LowAmmo()
-	local level = UnitLevel("player");
-	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
-	return self:GetEquippedAmmoAmount() < threshold;
+	return self:GetEquippedAmmoAmount() < self.db.profile.ammoThreshold;
 end
