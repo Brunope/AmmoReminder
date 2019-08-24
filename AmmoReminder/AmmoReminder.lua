@@ -9,7 +9,14 @@ end
 function AR.Remind(npc)
 	local ammoCount = AR.GetEquippedAmmoAmount();
 	local ammoType = AR.GetAmmoType();
-	message("Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc);
+
+	local str = "Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc;
+
+	if self.db.profile.showInChat then
+		print(str)
+	else
+		message(str)
+	end
 end
 
 AR.lastZone = ""

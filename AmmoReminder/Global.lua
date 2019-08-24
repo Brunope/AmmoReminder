@@ -19,6 +19,17 @@ local options = {
             get = "IsShowInChat",
             set = "ToggleShowInChat",
         },
+		ammoThreshold = {
+			type = "range",
+			name = "Ammo amount reminder threshold",
+			desc = "Don't remind when ammo amount > threshold.",
+			get = "GetAmmoThreshold",
+			set = "SetAmmoThreshold",
+			min = 0,
+			max = 3200,
+			step = 1,
+			bigStep = 100,
+		}
 	}
 }
 
@@ -57,4 +68,12 @@ end
 
 function AmmoReminder:ToggleShowInChat(info, value)
     self.db.profile.showInChat = value
+end
+
+function AmmoReminder:GetAmmoThreshold(info)
+	return self.db.profile.ammoThreshold
+end
+
+function AmmoReminder:SetAmmoThreshold(info, value)
+	self.db.profile.ammoThreshold = value
 end
