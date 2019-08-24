@@ -47,16 +47,17 @@ function AR.HandleZoneChange(self, event, ...)
 	AR.lastZone = zone
 end
 
-local ZoneChange_EventFrame = CreateFrame("Frame")
-ZoneChange_EventFrame:RegisterEvent("ZONE_CHANGED")
-ZoneChange_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
+function AR.RegisterEventHandlers()
+	-- TODO: use ace events?
+	local ZoneChange_EventFrame = CreateFrame("Frame")
+	ZoneChange_EventFrame:RegisterEvent("ZONE_CHANGED")
+	ZoneChange_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
 
-local ZoneChangeIndoors_EventFrame = CreateFrame("Frame")
-ZoneChangeIndoors_EventFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
-ZoneChangeIndoors_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
+	local ZoneChangeIndoors_EventFrame = CreateFrame("Frame")
+	ZoneChangeIndoors_EventFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
+	ZoneChangeIndoors_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
 
-local ZoneChangeNewArea_EventFrame = CreateFrame("Frame")
-ZoneChangeNewArea_EventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-ZoneChangeNewArea_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
-
-print("Loaded AmmoReminder")
+	local ZoneChangeNewArea_EventFrame = CreateFrame("Frame")
+	ZoneChangeNewArea_EventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	ZoneChangeNewArea_EventFrame:SetScript("OnEvent", AR.HandleZoneChange)
+end
