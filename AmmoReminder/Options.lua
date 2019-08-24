@@ -52,12 +52,11 @@ function AR:LoadAceOptions()
 end
 
 function AR:ChatCommand(input)
-	-- TODO: always open interface options panel
-    if not input or input:trim() == "" then
-        InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-    else
-        LibStub("AceConfigCmd-3.0"):HandleCommand("ar", "AmmoReminder", input)
-    end
+	-- For some reason, after a reload, "/ar" opens up the Controls
+	-- options page. Any further "/ar" opens up the AmmoReminder options
+	-- page. Fuck it, do it twice.
+	InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
+	InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 end
 
 function AR:IsShowInChat(info)
