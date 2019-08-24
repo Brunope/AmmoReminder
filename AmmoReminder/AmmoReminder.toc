@@ -10,8 +10,10 @@
 embeds.xml
 
 Global.lua
+Options.lua
+AmmoReminder.lua
 Ammo.lua
+Remind.lua
 HordeCityVendors.lua
 HordeArrowVendors.lua
 HordeBulletVendors.lua
-AmmoReminder.lua
