@@ -1,32 +1,40 @@
 local AR = AmmoReminder
 
 local defaults = {
-    profile = {
-        showInChat = false,
+	profile = {
 		limitAt60 = true,
+		disableOnTaxi = true,
+		showInChat = false,
 		ammoThreshold = 1600,
-    },
+	},
 }
 
 local options = {
-    name = "AmmoReminder",
-    handler = AmmoReminder,
-    type = "group",
-    args = {
-        showInChat = {
-            type = "toggle",
-            name = "Show only in chat",
-            desc = "Print reminder in chat instead of a message dialog.",
-            get = "IsShowInChat",
-            set = "ToggleShowInChat",
-        },
-        limitAt60 = {
-            type = "toggle",
-            name = "Limit at 60",
-            desc = "At level 60, only remind when in a major city.",
-            get = "IsLimitAt60",
-            set = "ToggleLimitAt60",
-        },
+	name = "AmmoReminder",
+	handler = AmmoReminder,
+	type = "group",
+	args = {
+		showInChat = {
+			type = "toggle",
+			name = "Remind only in chat",
+			desc = "Print reminder in chat instead of a message dialog.",
+			get = "IsShowInChat",
+			set = "ToggleShowInChat",
+		},
+		limitAt60 = {
+			type = "toggle",
+			name = "Limit at 60",
+			desc = "At level 60, only remind when in a major city.",
+			get = "IsLimitAt60",
+			set = "ToggleLimitAt60",
+		},
+		disableOnTaxi = {
+			type = "toggle",
+			name = "Disable on flight paths",
+			desc = "Don't remind when passing through zones on a flight path.",
+			get = "IsDisableOnTaxi",
+			set = "ToggleDisableOnTaxi",
+		},
 		ammoThreshold = {
 			type = "range",
 			name = "Low ammo threshold",
@@ -45,10 +53,10 @@ function AR:LoadAceOptions()
 	self.db = LibStub("AceDB-3.0"):New("AmmoReminderDb", defaults, true)
 
 	LibStub("AceConfig-3.0"):RegisterOptionsTable("AmmoReminder", options)
-    self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(
+	self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(
 		"AmmoReminder", "AmmoReminder")
-    self:RegisterChatCommand("ar", "ChatCommand")
-    self:RegisterChatCommand("ammoreminder", "ChatCommand")
+	self:RegisterChatCommand("ar", "ChatCommand")
+	self:RegisterChatCommand("ammoreminder", "ChatCommand")
 end
 
 function AR:ChatCommand(input)
@@ -60,19 +68,27 @@ function AR:ChatCommand(input)
 end
 
 function AR:IsShowInChat(info)
-    return self.db.profile.showInChat
+	return self.db.profile.showInChat
 end
 
 function AR:ToggleShowInChat(info, value)
-    self.db.profile.showInChat = value
+	self.db.profile.showInChat = value
 end
 
 function AR:IsLimitAt60(info)
-    return self.db.profile.limitAt60
+	return self.db.profile.limitAt60
 end
 
 function AR:ToggleLimitAt60(info, value)
-    self.db.profile.limitAt60 = value
+	self.db.profile.limitAt60 = value
+end
+
+function AR:IsDisableOnTaxi(info)
+	return self.db.profile.disableOnTaxi
+end
+
+function AR:ToggleDisableOnTaxi(info, value)
+	self.db.profile.disableOnTaxi = value
 end
 
 function AR:GetAmmoThreshold(info)

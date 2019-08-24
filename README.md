@@ -17,7 +17,7 @@ for me to test right now.
 * ~~Support bullet vendors~~
 * ~~Add remaining ammo count to reminder message~~
 * ~~Check currently equipped ammo to suggest either bullet vs arrow vendor~~
-* Disable reminders when passing through on a flight path
+* ~~Disable reminders when passing through on a flight path~~
 * ~~Don't remind if ammo amount is over a certain threshold~~
 * Reminder when you get into a 5-man group, since you're probably going to a dungeon
 * Reminder wherever you are when running really low on ammo
