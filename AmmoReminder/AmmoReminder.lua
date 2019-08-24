@@ -1,6 +1,6 @@
 local AR = AmmoReminder;
 
-function self:DebugPrint(s)
+function AR:DebugPrint(s)
 	if self.debugMode then
 		print(s)
 	end
