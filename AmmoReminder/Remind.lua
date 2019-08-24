@@ -26,7 +26,7 @@ function AR:Remind(npc)
 end
 
 function AR:ShouldSkipZoneAt60(zone)
-	return self.db.profile.limitAt60 and Is60() and not self:IsHordeCity(zone
+	return self.db.profile.limitAt60 and Is60() and not self:IsHordeCity(zone)
 end
 
 function AR:ShouldSkipZone(zone)
