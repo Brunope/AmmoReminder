@@ -1,3 +1,5 @@
+local AR = AmmoReminder
+
 function AR:Remind(npc)
 	local ammoCount = self:GetEquippedAmmoAmount();
 	local ammoType = self:GetAmmoType();
