@@ -9,11 +9,16 @@ end
 function AR:OnInitialize()
 	self:LoadAceOptions()
 
-	self.debugMode = true
+	self.debugMode = false
 	self.lastZone = ""
 end
 
 function AR:OnEnable()
+	local class = UnitClass("player")
+	if class ~= "Hunter" then
+		return
+	end
+
 	self:RegisterEventHandlers()
 	print("AmmoReminder enabled")
 end
