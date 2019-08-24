@@ -1,9 +1,12 @@
 # Ammo Reminder
+
 A Classic World of Warcraft addon for all you huntards that
 run out of ammo. If you're somewhat low on ammo and near a vendor
 that sells it, Ammo Reminder pops up a message reminding you to 
 buy some. Works with both arrows and bullets, depending on your
 equipped weapon type. 
+
+[Download version 1.0](https://github.com/Brunope/AmmoReminder/archive/v1.0.zip)
 
 ![screenshot](http://i.imgur.com/mwuLRxg.jpg)
 
