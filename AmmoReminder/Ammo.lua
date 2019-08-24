@@ -1,6 +1,6 @@
 local AR = AmmoReminder;
 
-function AR.GetRangedWeaponType()
+function AR:GetRangedWeaponType()
 	local link = GetInventoryItemLink("player",GetInventorySlotInfo("RangedSlot"));
 	if link == nil then
 		return "Missing";
@@ -9,32 +9,32 @@ function AR.GetRangedWeaponType()
 	return itemType;
 end;
 
-function AR.UsesArrows()
-	local weaponType = AR.GetRangedWeaponType()
+function AR:UsesArrows()
+	local weaponType = self:GetRangedWeaponType()
 	return weaponType == "Bows" or weaponType == "Crossbows"
 end
 
-function AR.UsesBullets()
-	local weaponType = GetRangedWeaponType()
+function AR:UsesBullets()
+	local weaponType = self:GetRangedWeaponType()
 	return weaponType == "Guns"
 end
 
 -- I think this can be replaced with GetEquippedAmmoName but I
 -- can't test it yet
-function AR.GetAmmoType()
-	if AR.UsesArrows() then
+function AR:GetAmmoType()
+	if self:UsesArrows() then
 		return "arrows"
-	elseif AR.UsesBullets() then
+	elseif self:UsesBullets() then
 		return "bullets"
 	end
 end
 
-function AR.GetEquippedAmmoName()
+function AR:GetEquippedAmmoName()
 	local _, textureName = GetInventorySlotInfo("AmmoSlot")
 	return textureName
 end
 
-function AR.GetEquippedAmmoAmount()
+function AR:GetEquippedAmmoAmount()
 	local slotId, _ = GetInventorySlotInfo("AmmoSlot");
 	local ammoCount = GetInventoryItemCount("player", slotId);
 	if ammoCount == 1 and not GetInventoryItemTexture("player", slotId) then
@@ -57,8 +57,8 @@ local function RoundDownTen(int)
 	return math.floor(int / 10) * 10
 end
 
-function AR.LowAmmo()
+function AR:LowAmmo()
 	local level = UnitLevel("player");
 	local threshold = levelToAmmoThreshold[RoundDownTen(level)];
-	return AR.GetEquippedAmmoAmount() < threshold;
+	return self:GetEquippedAmmoAmount() < threshold;
 end

@@ -34,11 +34,11 @@ local hordeArrowSubzoneToNpc = {
 
 -- TODO: Super-Seller 680 ?
 
-function AR.FindHordeArrowVendorNpc(zone, subzone)
+function AR:FindHordeArrowVendorNpc(zone, subzone)
 	local npc = hordeArrowSubzoneToNpc[subzone]
 	if npc ~= nil then
 		return npc
 	end
 
-	return AR.FindHordeCityVendorNpc(zone)
+	return self:FindHordeCityVendorNpc(zone)
 end

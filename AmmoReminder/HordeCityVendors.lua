@@ -6,10 +6,10 @@ local hordeArrowCityToNpc = {
 	["Thunder Bluff"]="Kuruk"
 }
 
-function AR.IsHordeCity(zone)
+function AR:IsHordeCity(zone)
 	return hordeArrowCityToNpc[zone] ~= nil
 end
 
-function AR.FindHordeCityVendorNpc(zone)
+function AR:FindHordeCityVendorNpc(zone)
 	return hordeArrowCityToNpc[zone]
 end

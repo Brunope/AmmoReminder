@@ -4,6 +4,7 @@ AmmoReminder = LibStub("AceAddon-3.0"):NewAddon(
 local defaults = {
     profile = {
         showInChat = false,
+		ammoThreshold = 1600,
     },
 }
 
@@ -33,7 +34,9 @@ local options = {
 	}
 }
 
-function AmmoReminder:OnInitialize()
+local AR = AmmoReminder;
+
+function AR:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("AmmoReminderDb", defaults, true)
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable("AmmoReminder", options)
@@ -42,38 +45,40 @@ function AmmoReminder:OnInitialize()
     self:RegisterChatCommand("ar", "ChatCommand")
     self:RegisterChatCommand("ammoreminder", "ChatCommand")
 
-	AmmoReminder.debugMode = true;
+	self.debugMode = true
+	self.lastZone = ""
 end
 
-function AmmoReminder:OnEnable()
-	AmmoReminder.RegisterEventHandlers()
+function AR:OnEnable()
+	self:RegisterEventHandlers()
 	print("AmmoReminder enabled")
 end
 
-function AmmoReminder:OnDisable()
-
+function AR:OnDisable()
+	-- TODO
 end
 
-function AmmoReminder:ChatCommand(input)
+function AR:ChatCommand(input)
+	-- TODO: always open interface options panel
     if not input or input:trim() == "" then
         InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
     else
-        LibStub("AceConfigCmd-3.0"):HandleCommand("wh", "WelcomeHome", input)
+        LibStub("AceConfigCmd-3.0"):HandleCommand("ar", "AmmoReminder", input)
     end
 end
 
-function AmmoReminder:IsShowInChat(info)
+function AR:IsShowInChat(info)
     return self.db.profile.showInChat
 end
 
-function AmmoReminder:ToggleShowInChat(info, value)
+function AR:ToggleShowInChat(info, value)
     self.db.profile.showInChat = value
 end
 
-function AmmoReminder:GetAmmoThreshold(info)
+function AR:GetAmmoThreshold(info)
 	return self.db.profile.ammoThreshold
 end
 
-function AmmoReminder:SetAmmoThreshold(info, value)
+function AR:SetAmmoThreshold(info, value)
 	self.db.profile.ammoThreshold = value
 end

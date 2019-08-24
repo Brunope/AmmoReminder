@@ -1,14 +1,14 @@
 local AR = AmmoReminder;
 
-function AR.DebugPrint(s)
-	if AR.debugMode then
+function self:DebugPrint(s)
+	if self.debugMode then
 		print(s)
 	end
 end
 
-function AR.Remind(npc)
-	local ammoCount = AR.GetEquippedAmmoAmount();
-	local ammoType = AR.GetAmmoType();
+function AR:Remind(npc)
+	local ammoCount = self:GetEquippedAmmoAmount();
+	local ammoType = self:GetAmmoType();
 
 	local str = "Remember to buy "..ammoType.."! You have "..ammoCount.." left. Look for "..npc;
 
@@ -19,42 +19,42 @@ function AR.Remind(npc)
 	end
 end
 
-AR.lastZone = ""
-function AR.ShouldSkipZone(zone)
-	return AR.IsHordeCity(zone) and zone == AR.lastZone;
+function AR:ShouldSkipZone(zone)
+	return self:IsHordeCity(zone) and zone == self.lastZone;
 end
 
-function AR.ShouldSkip(zone)
-	return AR.ShouldSkipZone(zone) or not AR.LowAmmo();
+function AR:ShouldSkip(zone)
+	return self:ShouldSkipZone(zone) or not self:LowAmmo();
 end
 
-function AR.FindAmmoVendorNpc(zone, subzone)
-	if AR.UsesArrows() then
-		return AR.FindHordeArrowVendorNpc(zone, subzone)
-	elseif AR.UsesBullets() then
-		return AR.FindHordeBulletVendorNpc(zone, subzone)
+function AR:FindAmmoVendorNpc(zone, subzone)
+	if self:UsesArrows() then
+		return self:FindHordeArrowVendorNpc(zone, subzone)
+	elseif self:UsesBullets() then
+		return self:FindHordeBulletVendorNpc(zone, subzone)
 	end
 end
 
+-- TODO: self:?
 function AR.HandleZoneChange(self, event, ...)
-	local ammoType = AR.GetAmmoType()
-	AR.DebugPrint(ammoType)
+	local ammoType = AR:GetAmmoType()
+	AR:DebugPrint(ammoType)
 
 	local subzone = GetSubZoneText()
 	local zone = GetZoneText()
 
-	AR.DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
-	AR.DebugPrint(AR.ShouldSkip(zone))
+	AR:DebugPrint("Checking for ammo vendors in "..subzone..", "..zone)
+	AR:DebugPrint(AR:ShouldSkip(zone))
 
-	local npc = AR.FindAmmoVendorNpc(zone, subzone)
-	if npc ~= nil and not AR.ShouldSkip(zone) then
-		AR.Remind(npc)
+	local npc = AR:FindAmmoVendorNpc(zone, subzone)
+	if npc ~= nil and not AR:ShouldSkip(zone) then
+		AR:Remind(npc)
 	end
 
 	AR.lastZone = zone
 end
 
-function AR.RegisterEventHandlers()
+function AR:RegisterEventHandlers()
 	-- TODO: use ace events?
 	local ZoneChange_EventFrame = CreateFrame("Frame")
 	ZoneChange_EventFrame:RegisterEvent("ZONE_CHANGED")
