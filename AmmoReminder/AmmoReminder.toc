@@ -3,7 +3,7 @@
 ## Notes: Reminds huntards to buy ammo when a vendor is nearby
 ## Author: Slickback
 ## Version: 0.1
-## SavedVariables AmmoReminderDb
+## SavedVariables: AmmoReminderDb
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3
 
