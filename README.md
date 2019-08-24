@@ -7,11 +7,16 @@ equipped weapon type.
 
 ![screenshot](http://i.imgur.com/mwuLRxg.jpg)
 
-## Version 1.0
-In v1, only Horde vendors will be fully supported.
+## Notes
+In v1, only Horde vendors are fully supported. Only works with hunters.
 
-I'll be updating this day 1 of classic with stuff that's hard
+I'll hopefully update this day 1 of classic with stuff that's hard
 for me to test right now.
+
+## Usage
+/ar or /ammoreminder in chat to bring up the options page
+
+![screenshot](http://i.imgur.com/LgfRMEM.jpg)
 
 ## TODO
 * ~~Support bullet vendors~~
@@ -23,6 +28,8 @@ for me to test right now.
 * Reminder wherever you are when running really low on ammo
 * Configuration options for the previous ~~3~~ 2 items
 * ~~Configuration option to change how reminder is displayed (chat, message popup, etc.)~~
+* ~~Disable for non-hunters~~
+* Enable/disable toggle, with per-class settings
 * ~~When level 60, only remind when in a major city (+config option)~~
 * ~~Shove all public functions into a class to avoid collisions~~
 * Find nearest ammo vendor button/arrow
