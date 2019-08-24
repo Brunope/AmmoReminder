@@ -25,7 +25,7 @@ local options = {
             name = "Limit at 60",
             desc = "At level 60, only remind when in a major city.",
             get = "IsLimitAt60",
-            set = "SetLimitAt60",
+            set = "ToggleLimitAt60",
         },
 		ammoThreshold = {
 			type = "range",
