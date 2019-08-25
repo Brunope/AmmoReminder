@@ -4,7 +4,7 @@ local AR = AmmoReminder;
 local allianceCityToNpc = {
 	["Stormwind City"]="Thurman Mullby",
 	["Darnassus"]="Mydrannul",
-	["Ironforge"]="Bryllia Ironbrand"
+	["City of Ironforge"]="Bryllia Ironbrand"
 }
 
 function AR:IsAllianceCity(zone)
