@@ -3,15 +3,16 @@
 A Classic World of Warcraft addon for all you huntards that
 run out of ammo. If you're somewhat low on ammo and near a vendor
 that sells it, Ammo Reminder pops up a message reminding you to 
-buy some. Works with both arrows and bullets, depending on your
-equipped weapon type. 
+buy some. Works with arrows and bullets, depending on your
+equipped weapon type.
 
-[Download version 1.0](https://github.com/Brunope/AmmoReminder/archive/v1.0.zip)
+[Download the latest version (1.1)](https://github.com/Brunope/AmmoReminder/releases/download/v1.1/AmmoReminder-v1.1.zip)
 
 ![screenshot](http://i.imgur.com/mwuLRxg.jpg)
 
 ## Notes
-In v1, only Horde vendors are fully supported. Only works with hunters.
+~~In v1, only Horde vendors are fully supported. Only works with hunters.~~
+Works for both Horde and filthy Alliance.
 
 I'll hopefully update this day 1 of classic with stuff that's hard
 for me to test right now.
@@ -36,5 +37,5 @@ for me to test right now.
 * ~~When level 60, only remind when in a major city (+config option)~~
 * ~~Shove all public functions into a class to avoid collisions~~
 * Find nearest ammo vendor button/arrow
-* Mayyybe support alliance scrubs
+* ~~Mayyybe support alliance scrubs~~
 

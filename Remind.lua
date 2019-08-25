@@ -47,10 +47,19 @@ function AR:ShouldSkip(zone)
 end
 
 function AR:FindAmmoVendorNpc(zone, subzone)
-	if self:UsesArrows() then
-		return self:FindHordeArrowVendorNpc(zone, subzone)
-	elseif self:UsesBullets() then
-		return self:FindHordeBulletVendorNpc(zone, subzone)
+	local faction = UnitFactionGroup("player")
+	if faction == "Horde" then
+		if self:UsesArrows() then
+			return self:FindHordeArrowVendorNpc(zone, subzone)
+		elseif self:UsesBullets() then
+			return self:FindHordeBulletVendorNpc(zone, subzone)
+		end
+	else
+		if self:UsesArrows() then
+			return self:FindAllianceArrowVendorNpc(zone, subzone)
+		elseif self:UsesBullets() then
+			return self:FindAllianceBulletVendorNpc(zone, subzone)
+		end
 	end
 end
 
