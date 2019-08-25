@@ -1,7 +1,6 @@
 local AR = AmmoReminder
 
 local hordeArrowSubzoneToNpc = {
-	["Darkspear Training Grounds"]="Test",
 	["Bloodhoof Village"]="Moorat Longstride",
 	["Bloodvenom Post"]="Bale",
 	["Booty Bay"]="Haren Kanmae",
