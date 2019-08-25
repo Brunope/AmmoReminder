@@ -6,7 +6,7 @@ that sells it, Ammo Reminder pops up a message reminding you to
 buy some. Works with arrows and bullets, depending on your
 equipped weapon type.
 
-[Download version 1.0](https://github.com/Brunope/AmmoReminder/archive/v1.0.zip)
+[Download the latest version (1.1)](https://github.com/Brunope/AmmoReminder/releases/download/v1.1/AmmoReminder-v1.1.zip)
 
 ![screenshot](http://i.imgur.com/mwuLRxg.jpg)
 
