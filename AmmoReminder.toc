@@ -2,7 +2,7 @@
 ## Title: Ammo Reminder
 ## Notes: Reminds huntards to buy ammo when a vendor is nearby
 ## Author: Slickback
-## Version: 1.0
+## Version: 1.1
 ## SavedVariables: AmmoReminderDb
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3
@@ -17,3 +17,6 @@ Remind.lua
 HordeCityVendors.lua
 HordeArrowVendors.lua
 HordeBulletVendors.lua
+AllianceCityVendors.lua
+AllianceArrowVendors.lua
+AllianceBulletVendors.lua
