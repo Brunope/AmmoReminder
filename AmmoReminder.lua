@@ -11,14 +11,14 @@ function AR:OnInitialize()
 
 	self.debugMode = false
 	self.lastZone = ""
+	self.faction = ""
+	self.class = ""
 end
 
 function AR:OnEnable()
-	local class = UnitClass("player")
-	if class ~= "Hunter" then
-		return
-	end
-
+	self.class = UnitClass("player")
+	self.faction = UnitFactionGroup("player")
+	
 	self:RegisterEventHandlers()
 	print("AmmoReminder enabled")
 end

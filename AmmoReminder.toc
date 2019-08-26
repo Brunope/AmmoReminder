@@ -14,6 +14,7 @@ Options.lua
 AmmoReminder.lua
 Ammo.lua
 Remind.lua
+ComponentVendors.lua
 HordeCityVendors.lua
 HordeArrowVendors.lua
 HordeBulletVendors.lua
