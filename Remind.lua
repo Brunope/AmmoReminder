@@ -35,6 +35,13 @@ function AR:ShouldSkipOnTaxi()
 	return self.db.profile.disableOnTaxi and UnitOnTaxi("player")
 end
 
+local lastReminder = 0;
+function AR:ShouldSkipTooSoon()
+	local now = time()
+	difference = now - lastReminder
+	return (difference < self.db.profile.minWaitSeconds)
+end
+
 -- TODO: When exiting a flight path, check again for a reminder, since
 -- we might have skipped the zone while flying.
 -- PLEASE tell me there is an enter/exit taxi event
@@ -43,6 +50,7 @@ function AR:ShouldSkip(zone)
 		self:ShouldSkipZone(zone) or
 		not self:LowAmmo() or
 		self:ShouldSkipOnTaxi()
+		or self:ShouldSkipTooSoon()
 	)
 end
 
@@ -83,5 +91,6 @@ function AR.HandleZoneChange(self, event, ...)
 	local npc = AR:FindAmmoVendorNpc(zone, subzone)
 	if npc ~= nil then
 		AR:Remind(npc)
+		lastReminder = time()
 	end
 end

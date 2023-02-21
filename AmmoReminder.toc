@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11403
 ## Title: Ammo Reminder
 ## Notes: Reminds huntards to buy ammo when a vendor is nearby
 ## Author: Slickback

@@ -6,6 +6,7 @@ local defaults = {
 		disableOnTaxi = true,
 		showInChat = false,
 		ammoThreshold = 1600,
+		minWaitSeconds = 300,
 	},
 }
 
@@ -41,6 +42,17 @@ local options = {
 			desc = "Only remind when ammo amount is below threshold.",
 			get = "GetAmmoThreshold",
 			set = "SetAmmoThreshold",
+			min = 0,
+			max = 3200,
+			step = 1,
+			bigStep = 100,
+		},
+		minWaitSeconds = {
+			type = "range",
+			name = "Minimum wait seconds",
+			desc = "Don't remind until this many seconds have passed since the last reminder.",
+			get = "GetMinWaitSeconds",
+			set = "SetMinWaitSeconds",
 			min = 0,
 			max = 3200,
 			step = 1,
@@ -97,4 +109,12 @@ end
 
 function AR:SetAmmoThreshold(info, value)
 	self.db.profile.ammoThreshold = value
+end
+
+function AR:GetMinWaitSeconds(info)
+	return self.db.profile.minWaitSeconds
+end
+
+function AR:SetMinWaitSeconds(info, value)
+	self.db.profile.minWaitSeconds = value
 end
